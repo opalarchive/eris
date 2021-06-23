@@ -1026,6 +1026,9 @@ declare namespace Eris {
     autoArchiveDuration: number;
     name: string;
   }
+  interface CreateThreadWithoutMessageOptions extends CreateThreadOptions {
+    type: AnyThreadChannel["type"];
+  }
   interface GetArchivedThreadsOptions {
     before?: Date;
     limit?: number;
@@ -1695,7 +1698,7 @@ declare namespace Eris {
     createRole(guildID: string, options?: RoleOptions | Role, reason?: string): Promise<Role>;
     createStageInstance(channelID: string, options: StageInstanceOptions): Promise<StageInstance>;
     createThreadWithMessage(channelID: string, options: CreateThreadOptions): Promise<NewsThreadChannel | PublicThreadChannel>;
-    createThreadWithoutMessage(channelID: string, options: CreateThreadOptions): Promise<PrivateThreadChannel>;
+    createThreadWithoutMessage(channelID: string, options: CreateThreadWithoutMessageOptions): Promise<PrivateThreadChannel>;
     crosspostMessage(channelID: string, messageID: string): Promise<Message>;
     deleteChannel(channelID: string, reason?: string): Promise<void>;
     deleteChannelPermission(channelID: string, overwriteID: string, reason?: string): Promise<void>;
@@ -2687,7 +2690,7 @@ declare namespace Eris {
     addMessageReaction(messageID: string, reaction: string, userID: string): Promise<void>;
     createInvite(options?: CreateInviteOptions, reason?: string): Promise<Invite<"withMetadata", TextChannel>>;
     createMessage(content: MessageContent, file?: MessageFile | MessageFile[]): Promise<Message<TextChannel>>;
-    createThreadWithoutMessage(options: CreateThreadOptions): Promise<PrivateThreadChannel>;
+    createThreadWithoutMessage(options: CreateThreadWithoutMessageOptions): Promise<PrivateThreadChannel>;
     createThreadWithMessage(messageID: string, options: CreateThreadOptions): Promise<PublicThreadChannel>;
     createWebhook(options: { name: string; avatar?: string | null}, reason?: string): Promise<Webhook>;
     deleteMessage(messageID: string, reason?: string): Promise<void>;
