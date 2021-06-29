@@ -1039,7 +1039,6 @@ declare namespace Eris {
   interface ThreadMetadata {
     archiveTimestamp: number;
     archived: boolean;
-    archiverID?: string;
     autoArchiveDuration: number;
     locked?: boolean;
   }
@@ -2700,6 +2699,7 @@ declare namespace Eris {
   }
 
   export class TextChannel extends GuildChannel implements GuildTextable, Invitable {
+    defaultAutoArchiveDuration: 60 | 1440 | 4320 | 10080;
     lastMessageID: string;
     lastPinTimestamp: number | null;
     messages: Collection<Message<this>>;
